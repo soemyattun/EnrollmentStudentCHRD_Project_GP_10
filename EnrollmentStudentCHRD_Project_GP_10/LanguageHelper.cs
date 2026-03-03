@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace EnrollmentStudentCHRD_Project_GP_10
+{
+    public partial class LanguageHelper : Form
+    {
+        public LanguageHelper()
+        {
+            InitializeComponent();
+        }
+
+        private void LanguageHelper_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
