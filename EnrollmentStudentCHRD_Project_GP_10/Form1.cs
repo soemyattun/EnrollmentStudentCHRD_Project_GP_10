@@ -107,6 +107,7 @@ namespace EnrollmentStudentCHRD_Project_GP_10
             try
             {
                 LocalizationService.ApplyLanguage(this, langCode);
+
             }
             catch (Exception ex)
             {

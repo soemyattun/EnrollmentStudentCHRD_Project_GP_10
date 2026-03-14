@@ -234,4 +234,7 @@
   <data name="labRollNo" xml:space="preserve">
     <value>Roll NO</value>
   </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Login</value>
+  </data>
 </root>

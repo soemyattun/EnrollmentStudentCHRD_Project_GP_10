@@ -234,4 +234,7 @@
   <data name="labRollNo" xml:space="preserve">
     <value>ခုံအမှတ်</value>
   </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>လော့ဂ်အင်</value>
+  </data>
 </root>

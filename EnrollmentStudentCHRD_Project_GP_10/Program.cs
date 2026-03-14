@@ -16,7 +16,7 @@ namespace EnrollmentStudentCHRD_Project_GP_10
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormEditStudents());
+            Application.Run(new Form1());
         }
     }
 }

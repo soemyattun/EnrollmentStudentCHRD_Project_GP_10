@@ -25,7 +25,6 @@ namespace EnrollmentStudentCHRD_Project_GP_10
         public AdminDashboard()
         {
             InitializeComponent();
-            dataGridView1.DataError += dataGridView1_DataError;
             printDocument1.PrintPage += PrintDocument1_PrintPage;
         }
 
@@ -87,8 +86,10 @@ namespace EnrollmentStudentCHRD_Project_GP_10
         private void AdminDashboard_Load(object sender, EventArgs e)
         {
             LoadStudents();
+            lblMale.Text = "Male: 0";
+            lblFemale.Text = "Female: 0";
+            lblTotal.Text = "Total: 0";
 
-           
 
 
             LocalizationService.ApplyLanguage(
@@ -97,44 +98,6 @@ namespace EnrollmentStudentCHRD_Project_GP_10
             );
             txtBatch.Clear();
         }
-
-        //private void LoadStudents()
-        //{
-        //    using (OleDbConnection con = new OleDbConnection(conStr))
-        //    {
-        //        string query = "SELECT * FROM UserInfotable";
-        //        OleDbDataAdapter da = new OleDbDataAdapter(query, con);
-        //        DataTable dt = new DataTable();
-        //        da.Fill(dt);
-
-        //        dataGridView1.DataSource = dt;
-        //    }
-        //}
-        //private void LoadStudents()
-        //{
-        //    try
-        //    {
-        //        using (OleDbConnection con = new OleDbConnection(conStr))
-        //        {
-        //            string query = "SELECT * FROM UserInfotable";
-        //            adapter = new OleDbDataAdapter(query, con);
-        //            OleDbCommandBuilder builder = new OleDbCommandBuilder(adapter);
-
-        //            dt = new DataTable();
-        //            adapter.Fill(dt);
-        //            dataGridView1.DataSource = dt;
-        //        }
-
-        //        dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-        //        dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-        //        dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-        //        dataGridView1.DefaultCellStyle.Font = new Font("Pyidaungsu", 10);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error loading students: " + ex.Message);
-        //    }
-        //}
         private void LoadStudents()
         {
             try
@@ -145,13 +108,32 @@ namespace EnrollmentStudentCHRD_Project_GP_10
                     adapter = new OleDbDataAdapter(query, con);
                     dt = new DataTable();
                     adapter.Fill(dt);
-                    dataGridView1.DataSource = dt;
                 }
 
-                // ❌ AutoSize AllCells မသုံးပါ
+                // ✅ Add Row Number column
+                DataTable dtWithNo = dt.Copy();
+                if (!dtWithNo.Columns.Contains("No"))
+                    dtWithNo.Columns.Add("No", typeof(int));
+
+                for (int i = 0; i < dtWithNo.Rows.Count; i++)
+                {
+                    dtWithNo.Rows[i]["No"] = i + 1; // 1-based index
+                }
+
+                dataGridView1.DataSource = dtWithNo;
+                UpdateGenderCount(dt);
+
+                // ✅ Hide database ID column
+                if (dataGridView1.Columns.Contains("ID"))
+                    dataGridView1.Columns["ID"].Visible = false;
+
+                // Move "No" column to first position
+                dataGridView1.Columns["No"].DisplayIndex = 0;
+                dataGridView1.Columns["No"].Width = 50;
+
+                // Other formatting
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
                 dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-
                 dataGridView1.RowTemplate.Height = 50;
                 dataGridView1.DefaultCellStyle.Font = new Font("Pyidaungsu", 10);
 
@@ -161,13 +143,11 @@ namespace EnrollmentStudentCHRD_Project_GP_10
                     {
                         col.Width = 100;
                         if (col is DataGridViewImageColumn imgCol)
-                        {
                             imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
-                        }
                     }
-                    else
+                    else if (col.Name != "No")
                     {
-                        col.Width = 120;// fixed width (လိုသလိုပြင်)
+                        col.Width = 120;
                     }
                 }
             }
@@ -176,68 +156,8 @@ namespace EnrollmentStudentCHRD_Project_GP_10
                 MessageBox.Show(ex.Message);
             }
         }
-        //private void LoadStudents()
-        //{
-        //    try
-        //    {
-        //        using (OleDbConnection con = new OleDbConnection(conStr))
-        //        {
-        //            string query = "SELECT * FROM UserInfotable";
-        //            adapter = new OleDbDataAdapter(query, con);
-        //            OleDbCommandBuilder builder = new OleDbCommandBuilder(adapter);
 
-        //            dt = new DataTable();
-        //            adapter.Fill(dt);
-        //            dataGridView1.DataSource = dt;
-        //        }
-
-        //        // ===== GENERAL SETTINGS =====
-        //        dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-        //        dataGridView1.DefaultCellStyle.Font = new Font("Pyidaungsu", 10);
-
-        //        // ===== COLUMN WIDTH & ROW HEIGHT =====
-        //        foreach (DataGridViewColumn col in dataGridView1.Columns)
-        //        {
-        //            if (col.Name == "Photo") // Photo column အတွက်
-        //            {
-        //                col.Width = 100; // column width
-        //                DataGridViewImageColumn imgCol = col as DataGridViewImageColumn;
-        //                if (imgCol != null)
-        //                    imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom; // Zoom layout
-        //            }
-        //            else
-        //            {
-        //                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-        //            }
-        //        }
-
-        //        // Row height
-        //        dataGridView1.RowTemplate.Height = 100;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error loading students: " + ex.Message);
-        //    }
-        //}
-        //private void LoadStudents()
-        //{
-        //    using (OleDbConnection con = new OleDbConnection(conStr))
-        //    {
-        //        string query = "SELECT * FROM UserInfotable"; // Database field အားလုံးကို ဆွဲထုတ်ခြင်း
-        //        adapter = new OleDbDataAdapter(query, con);
-
-        //        // CommandBuilder က Update/Delete/Insert code တွေကို အလိုအလျောက် ဖန်တီးပေးပါတယ်
-        //        OleDbCommandBuilder builder = new OleDbCommandBuilder(adapter);
-
-        //        dt = new DataTable();
-        //        adapter.Fill(dt);
-        //        dataGridView1.DataSource = dt;
-        //    }
-        //    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-        //    dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-        //    dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-        //    dataGridView1.DefaultCellStyle.Font = new Font("Pyidaungsu", 10);
-        //}
+       
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -269,18 +189,12 @@ namespace EnrollmentStudentCHRD_Project_GP_10
 
         private void button4_Click(object sender, EventArgs e)
         {
-            // Clear search textbox
             txtRollNo.Clear();
+            txtFullName.Clear();
+            txtBatch.Clear();
+            txtSemester.Clear();
 
-            // Reset search dropdown
-            txtRollNo.Clear();
-
-            // Reload all students from database
             LoadStudents();
-
-            //// Clear DataGridView selection and selectedRow variable
-            //dataGridView1.ClearSelection();
-            //selectedRow = null;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -401,72 +315,7 @@ namespace EnrollmentStudentCHRD_Project_GP_10
 
         
 
-        //private void SearchStudent()
-        //{
-        //    if (txtSemester.SelectedIndex == -1)
-        //    {
-        //        MessageBox.Show("Please select search type.");
-        //        return;
-        //    }
-
-        //    if (string.IsNullOrWhiteSpace(txtRollNo.Text))
-        //    {
-        //        MessageBox.Show("Please enter search value.");
-        //        return;
-        //    }
-
-        //    string searchBy = txtSemester.SelectedItem.ToString();
-        //    string query = "";
-
-        //    using (OleDbConnection con = new OleDbConnection(conStr))
-        //    using (OleDbCommand cmd = new OleDbCommand())
-        //    {
-        //        cmd.Connection = con;
-
-        //        if (searchBy == "Batch")
-        //        {
-        //            query = "SELECT * FROM UserInfotable WHERE Trim(Batch) = ?";
-        //            cmd.Parameters.AddWithValue("?", txtRollNo.Text.Trim());
-        //        }
-        //        else if (searchBy == "Semester")
-        //        {
-        //            if (!int.TryParse(txtRollNo.Text.Trim(), out int semester))
-        //            {
-        //                MessageBox.Show("Invalid semester number.");
-        //                txtRollNo.Focus();
-        //                return;
-        //            }
-        //            query = "SELECT * FROM UserInfotable WHERE Semester = ?";
-        //            cmd.Parameters.AddWithValue("?", semester);
-        //        }
-        //        else if (searchBy == "Roll No")
-        //        {
-        //            query = "SELECT * FROM UserInfotable WHERE Trim(RollNo) LIKE ?";
-        //            cmd.Parameters.AddWithValue("?", "%" + txtRollNo.Text.Trim() + "%");
-        //        }
-        //        else if (searchBy == "NRC No")
-        //        {
-        //            query = "SELECT * FROM UserInfotable WHERE Trim(NRC) LIKE ?";
-        //            cmd.Parameters.AddWithValue("?", "%" + txtRollNo.Text.Trim() + "%");
-        //        }
-
-        //        cmd.CommandText = query;
-
-        //        OleDbDataAdapter da = new OleDbDataAdapter(cmd);
-        //        DataTable dt = new DataTable();
-        //        da.Fill(dt);
-
-        //        if (dt.Rows.Count == 0)
-        //        {
-        //            MessageBox.Show("No record found.", "Search Result");
-        //            txtRollNo.Focus();
-        //            txtRollNo.SelectAll();
-        //            return;
-        //        }
-
-        //        dataGridView1.DataSource = dt;
-        //    }
-        //}
+    
         private void NumberOnly_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
@@ -542,7 +391,6 @@ namespace EnrollmentStudentCHRD_Project_GP_10
         {
 
         }
-
         private void SearchStudents()
         {
             try
@@ -579,7 +427,6 @@ namespace EnrollmentStudentCHRD_Project_GP_10
                     // ===== Semester =====
                     if (!string.IsNullOrWhiteSpace(txtSemester.Text))
                     {
-                        // Number only: parse or just keep as string
                         if (int.TryParse(txtSemester.Text.Trim(), out int sem))
                         {
                             conditions.Add("Semester = ?");
@@ -606,15 +453,44 @@ namespace EnrollmentStudentCHRD_Project_GP_10
                     DataTable searchDt = new DataTable();
                     da.Fill(searchDt);
 
+                    //if (searchDt.Rows.Count == 0)
+                    //{
+                    //    MessageBox.Show("No record found.", "Search Result");
+                    //    dataGridView1.DataSource = null; // clear previous
+                    //    return;
+                    //}
                     if (searchDt.Rows.Count == 0)
                     {
                         MessageBox.Show("No record found.", "Search Result");
+                        dataGridView1.DataSource = null;
+
+                        lblMale.Text = "Male: 0";
+                        lblFemale.Text = "Female: 0";
+                        lblTotal.Text = "Total: 0";
+
                         return;
+                    }
+
+                    // ✅ Add No. column
+                    if (!searchDt.Columns.Contains("No"))
+                        searchDt.Columns.Add("No", typeof(int));
+
+                    for (int i = 0; i < searchDt.Rows.Count; i++)
+                    {
+                        searchDt.Rows[i]["No"] = i + 1; // 1-based index
                     }
 
                     dataGridView1.DataSource = searchDt;
 
-                    // Update male/female/total counter
+                    // Hide ID column
+                    if (dataGridView1.Columns.Contains("ID"))
+                        dataGridView1.Columns["ID"].Visible = false;
+
+                    // Move No column to first
+                    dataGridView1.Columns["No"].DisplayIndex = 0;
+                    dataGridView1.Columns["No"].Width = 50;
+
+                    // Update gender/total counter
                     UpdateGenderCount(searchDt);
                 }
             }
@@ -623,7 +499,7 @@ namespace EnrollmentStudentCHRD_Project_GP_10
                 MessageBox.Show("Search error: " + ex.Message);
             }
         }
-        // ==================== MALE/FEMALE/TOTAL COUNTER ====================
+       
         private void UpdateGenderCount(DataTable table)
         {
             int maleCount = 0;
@@ -641,30 +517,29 @@ namespace EnrollmentStudentCHRD_Project_GP_10
             lblTotal.Text = "Total: " + table.Rows.Count;
         }
 
-        // ==================== CLEAR SEARCH ====================
-        //private void btnClear_Click(object sender, EventArgs e)
-        //{
-        //    txtFullName.Clear();
-        //    txtFullName.Clear();
-        //    txtBatch.Clear();
-        //    txtRollNo.Clear();
-        //}
+       
 
         private void btnClear_Click_1(object sender, EventArgs e)
         {
             txtFullName.Clear();
-            txtFullName.Clear();
             txtBatch.Clear();
             txtRollNo.Clear();
-            lblFemale.Text="";
-            lblMale.Text = "";
-            lblTotal.Text = "";
+            txtSemester.Clear();
+
+            LoadStudents(); // ✅ reload data and recount
         }
+
+
 
         private void btnReport_Click(object sender, EventArgs e)
         {
             Report reportForm = new Report();
             reportForm.ShowDialog();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

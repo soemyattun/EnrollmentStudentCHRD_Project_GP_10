@@ -97,7 +97,7 @@ namespace EnrollmentStudentCHRD_Project_GP_10
             comboBoxSemester.SelectedIndex = -1;
             textBoxBatch.Clear();
         }
-        private void btnSubmit_Click(object sender, EventArgs e)
+        private void btnSubmit_Click_1(object sender, EventArgs e)
         {
             string cs = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Soe Myat Tun\Downloads\StudentInfo1.accdb";
 
@@ -167,10 +167,11 @@ namespace EnrollmentStudentCHRD_Project_GP_10
                     }
 
                 }
-                catch (Exception ex) { 
-                MessageBox.Show(ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
-              
+
             }
         }
         private void btnCancel_Click(object sender, EventArgs e)
@@ -178,12 +179,27 @@ namespace EnrollmentStudentCHRD_Project_GP_10
             this.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             AdminDashboard admin = new AdminDashboard();
             admin.Show();
             this.Close();
         }
+
+        private void FormEditStudents_Load_1(object sender, EventArgs e)
+        {
+            LoadStudentById();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
+
 
         //private void btnSubmit_Click(object sender, EventArgs e)
         //{

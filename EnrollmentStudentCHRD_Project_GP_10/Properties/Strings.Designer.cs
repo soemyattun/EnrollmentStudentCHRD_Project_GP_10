@@ -394,6 +394,15 @@ namespace EnrollmentStudentCHRD_Project_GP_10.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string LoginTitle {
+            get {
+                return ResourceManager.GetString("LoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Application for Permission.
         /// </summary>
         public static string titleApp {

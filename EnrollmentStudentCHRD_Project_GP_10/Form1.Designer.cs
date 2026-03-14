@@ -44,50 +44,56 @@
             // labUniversity
             // 
             this.labUniversity.AutoSize = true;
-            this.labUniversity.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labUniversity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.labUniversity.Location = new System.Drawing.Point(511, 178);
+            this.labUniversity.BackColor = System.Drawing.Color.Transparent;
+            this.labUniversity.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labUniversity.ForeColor = System.Drawing.Color.Transparent;
+            this.labUniversity.Location = new System.Drawing.Point(430, 175);
             this.labUniversity.Name = "labUniversity";
-            this.labUniversity.Size = new System.Drawing.Size(246, 27);
+            this.labUniversity.Size = new System.Drawing.Size(265, 29);
             this.labUniversity.TabIndex = 15;
             this.labUniversity.Text = "University Of Yangon";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Myanmar Text", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(501, 223);
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Myanmar Text", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(320, 215);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(267, 36);
+            this.label3.Size = new System.Drawing.Size(503, 39);
             this.label3.TabIndex = 13;
-            this.label3.Text = "Enrollment Student Of CHRD";
+            this.label3.Text = "Univesity Enrollment Management System [CHRD]";
             // 
             // textPassword
             // 
-            this.textPassword.Location = new System.Drawing.Point(481, 377);
+            this.textPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textPassword.Location = new System.Drawing.Point(373, 453);
             this.textPassword.MaxLength = 6;
-            this.textPassword.Multiline = true;
             this.textPassword.Name = "textPassword";
-            this.textPassword.Size = new System.Drawing.Size(365, 26);
+            this.textPassword.Size = new System.Drawing.Size(422, 30);
             this.textPassword.TabIndex = 12;
             this.textPassword.UseSystemPasswordChar = true;
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(325, 377);
+            this.lblPassword.BackColor = System.Drawing.Color.Transparent;
+            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassword.ForeColor = System.Drawing.Color.Transparent;
+            this.lblPassword.Location = new System.Drawing.Point(217, 453);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(89, 22);
+            this.lblPassword.Size = new System.Drawing.Size(104, 25);
             this.lblPassword.TabIndex = 11;
-            this.lblPassword.Text = "Password";
+            this.lblPassword.Text = "Password:";
             // 
             // textUserName
             // 
-            this.textUserName.Location = new System.Drawing.Point(481, 299);
+            this.textUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textUserName.Location = new System.Drawing.Point(373, 347);
             this.textUserName.Multiline = true;
             this.textUserName.Name = "textUserName";
-            this.textUserName.Size = new System.Drawing.Size(365, 34);
+            this.textUserName.Size = new System.Drawing.Size(422, 41);
             this.textUserName.TabIndex = 10;
             // 
             // btnLogIn
@@ -95,9 +101,9 @@
             this.btnLogIn.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnLogIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogIn.ForeColor = System.Drawing.Color.Transparent;
-            this.btnLogIn.Location = new System.Drawing.Point(536, 482);
+            this.btnLogIn.Location = new System.Drawing.Point(435, 531);
             this.btnLogIn.Name = "btnLogIn";
-            this.btnLogIn.Size = new System.Drawing.Size(186, 48);
+            this.btnLogIn.Size = new System.Drawing.Size(259, 48);
             this.btnLogIn.TabIndex = 9;
             this.btnLogIn.Text = "LOG IN";
             this.btnLogIn.UseVisualStyleBackColor = false;
@@ -106,10 +112,12 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(325, 304);
+            this.lblUsername.BackColor = System.Drawing.Color.Transparent;
+            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.ForeColor = System.Drawing.Color.Transparent;
+            this.lblUsername.Location = new System.Drawing.Point(205, 363);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(105, 22);
+            this.lblUsername.Size = new System.Drawing.Size(116, 25);
             this.lblUsername.TabIndex = 8;
             this.lblUsername.Text = "User Name:";
             // 
@@ -118,7 +126,7 @@
             this.btnEnglish.AutoSize = true;
             this.btnEnglish.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnglish.Image = global::EnrollmentStudentCHRD_Project_GP_10.Properties.Resources.united_states__1_;
-            this.btnEnglish.Location = new System.Drawing.Point(1084, 93);
+            this.btnEnglish.Location = new System.Drawing.Point(1003, 90);
             this.btnEnglish.Name = "btnEnglish";
             this.btnEnglish.Size = new System.Drawing.Size(128, 46);
             this.btnEnglish.TabIndex = 17;
@@ -134,7 +142,7 @@
             this.btnMyanmar.ForeColor = System.Drawing.Color.Black;
             this.btnMyanmar.Image = global::EnrollmentStudentCHRD_Project_GP_10.Properties.Resources.images__1_;
             this.btnMyanmar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMyanmar.Location = new System.Drawing.Point(1084, 33);
+            this.btnMyanmar.Location = new System.Drawing.Point(1003, 30);
             this.btnMyanmar.Name = "btnMyanmar";
             this.btnMyanmar.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnMyanmar.Size = new System.Drawing.Size(128, 44);
@@ -148,9 +156,9 @@
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Image = global::EnrollmentStudentCHRD_Project_GP_10.Properties.Resources.viber_image_2026_01_01_11_57_54_3031;
-            this.pictureBox1.Location = new System.Drawing.Point(565, 33);
+            this.pictureBox1.Location = new System.Drawing.Point(507, 30);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(125, 122);
+            this.pictureBox1.Size = new System.Drawing.Size(125, 119);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
@@ -160,7 +168,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1283, 659);
+            this.BackgroundImage = global::EnrollmentStudentCHRD_Project_GP_10.Properties.Resources.images__12_;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1523, 659);
             this.Controls.Add(this.btnEnglish);
             this.Controls.Add(this.btnMyanmar);
             this.Controls.Add(this.labUniversity);
